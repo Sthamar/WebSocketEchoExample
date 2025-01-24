@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Websocket Echo</title>
+</head>
+<body>
+    <h1>Websocket Echo Example</h1>
+    <input type="text"  id="MessageInput" placeholder="Enter your message">
+    <button onclick="sendMessage()">Send</button>
+    <p id="response"></p>
+    <script>
+        const ws = new WebSocket("http://127.0.0.1:8000/ws");
+
+        ws.onmessage = (event) => {
+            document.getElementById('response').innerText = event.data;
+        };
+
+        function sendMessage(){
+            const input = document.getElementById('MessageInput').value;
+            ws.send(input)
+        }
+    </script>
+
+</body>
+</html>
